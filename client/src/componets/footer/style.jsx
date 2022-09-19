@@ -1,23 +1,24 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    height: 100px;
-    width: 100%;
-    display: block;
+    height: 60%;
+    width: 150px;
     z-index: 10000;
     padding: 2px 0px;
     background-color: #ffffff;
     opacity: 0.6;
+    position: absolute;
+    float: left;
 `;
 
 export const Wapper = styled.div`
     margin-left: 10px;
     color: #000000;
-    display: flex;
+    align-content: center;
 `;
 
 export const Center = styled.div`
-    flex: 1;
+  
 `;
 
 export const CenterBG = styled.span`

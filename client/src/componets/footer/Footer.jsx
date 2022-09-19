@@ -9,14 +9,14 @@ import {
 const Footer = ({map,mapCenter}) => {
   return (
     <Container>
-      <Wapper>
+      {<Wapper>
         <Center>
             <CenterBG>Center</CenterBG>
             <Span>{mapCenter}</Span><br />
             <CenterBG>Map</CenterBG>
             <Span>{map}</Span>
         </Center>
-      </Wapper>
+      </Wapper>}
     </Container>
   )
 }
