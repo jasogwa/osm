@@ -5,6 +5,7 @@ import 'leaflet/dist/leaflet.css';
 import osm from "./osm-provider";
 import  "./style.css";
 import { publicUrl } from "../../requestUrl";
+import Footer from "../../componets/footer/Footer";
 
 L.Icon.Default.mergeOptions({
    iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
@@ -18,20 +19,21 @@ const Home = () => {
     const [locations, setLocations] = useState({});
     const [isLoading, setLoading] = useState(true);
 
-    useEffect(()=>{
-        const getGeoJson = async () =>{
-          try {
-            const res  = await publicUrl.post("get-geo-json/");
-            setLocations(res.data);
-            setLoading(false);
-          } catch (error) {}
+    const getGeoJson = async () =>{
+        try {
+          const response  = await publicUrl.post("get-geo-json/");
+          setLocations(response.data);
+          setLoading(false);
+        } catch (error) {
+          return "An error has occurred: " + error.message;
         }
+    }
+
+    useEffect(()=>{
         getGeoJson()
     },[]);
     
-    if (isLoading) {
-        return <div className="App">Loading...</div>;
-    }
+    if (isLoading) return "Loading...";
 
     return (
         <>
