@@ -4,6 +4,6 @@ import OsmController from "../controller/osm.controller";
 const router = Router();
 const osm = new OsmController();
 
-router.post('/get-geo-json', osm.getGeoJSON);
+router.get("/get-geo-json/:value", osm.getGeoJSON);
 
 export default router;

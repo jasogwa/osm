@@ -5,7 +5,7 @@ import osmtogeojson from "osmtogeojson";
 export default class OsmController {
   public getGeoJSON = async (req: Request, res: Response) => {
     try {
-      const bbox = "bbox=13.20524,43.70861,13.22842,43.72338";
+      const bbox = "bbox=" + req.params.value;
       const url = `https://www.openstreetmap.org/api/0.6/map?${bbox}`;
       const response = await this.callUrl(url);
       const osm = osmtogeojson(response);
