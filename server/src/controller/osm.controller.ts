@@ -9,7 +9,7 @@ export default class OsmController {
       const url = `https://www.openstreetmap.org/api/0.6/map?${bbox}`;
       const response = await this.callUrl(url);
       const osm = osmtogeojson(response);
-      res.json(response);
+      res.json(osm);
     } catch (error) {
       console.log(error);
     }
