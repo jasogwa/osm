@@ -28,3 +28,10 @@ yarn start
 ```
 localhost
 ```
+
+### 6. Jest testing
+
+```
+cd server
+npm test 
+```
