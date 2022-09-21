@@ -9,13 +9,13 @@ export default class OsmController {
       const url = `https://www.openstreetmap.org/api/0.6/map?${bbox}`;
       const response = await this.callUrl(url);
       const osm = osmtogeojson(response);
-      res.json(osm);
+      res.json(response);
     } catch (error) {
       console.log(error);
     }
   };
 
-  private callUrl = async (url: string) => {
+  public callUrl = async (url: string) => {
     try {
       const response = await fetch(url, {
         method: "GET",
