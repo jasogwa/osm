@@ -47,7 +47,7 @@ const Home = () => {
 
   const checkIfValidlatitudeAndlongitude = (str) => {
     // Regular expression to check if string is a latitude and longitude
-    const regexExp = /^((\-?|\+?)?\d+(\.\d+)?),\s*((\-?|\+?)?\d+(\.\d+)?)$/gi;
+    const regexExp = /^((\/-?|\+?)?\d+(\.\d+)?),\s*((\/-?|\+?)?\d+(\.\d+)?)$/gi;
     return regexExp.test(str);
   };
 
