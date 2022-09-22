@@ -24,13 +24,17 @@ yarn start
 ```
 
 ### 5. Start app
-
 ```
 localhost
 ```
 
-### 6. Jest testing
+### 6. map testing
+```
+minLon,minLat : 0,0
+maxLon,maxLat : 0,0
+```
 
+### 7. Jest testing
 ```
 cd server
 npm test 
