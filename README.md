@@ -32,6 +32,9 @@ localhost
 ```
 minLon,minLat : 0,0
 maxLon,maxLat : 0,0
+--------------------
+minLon,minLat : 13.20524,43.70861
+maxLon,maxLat : 13.22842,43.72338
 ```
 
 ### 7. Jest testing
