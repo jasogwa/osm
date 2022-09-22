@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { MapContainer, TileLayer, GeoJSON, useMap} from "react-leaflet";
+import { MapContainer, TileLayer, GeoJSON, useMap } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import osm from "./osm-provider";
@@ -15,7 +15,6 @@ import {
   Error,
   Label,
 } from "./style";
-
 
 const Home = () => {
   const [center] = useState({ lat: 13.084622, lng: 80.248357 });
@@ -87,24 +86,24 @@ const Home = () => {
   };
 
   const getDimension = ([array]) => {
-      return 1 + (Array.isArray(array) && getDimension(array));
-  } 
+    return 1 + (Array.isArray(array) && getDimension(array));
+  };
   const GeoJsonComponent = () => {
-    const  map = useMap();
+    const map = useMap();
     if (JSON.stringify(locations).length > 2) {
       let json = JSON.parse(JSON.stringify(locations.features));
       let array = [];
-      json.forEach(element => {
-        array.push(element.geometry.coordinates)
+      json.forEach((element) => {
+        array.push(element.geometry.coordinates);
       });
-      if(getDimension(array)===1){
-        map.flyTo(array,3)
+      if (getDimension(array) === 1) {
+        map.flyTo(array, 3);
       }
-      if(getDimension(array)===2){
-        map.flyTo(array[0],3)
+      if (getDimension(array) === 2) {
+        map.flyTo(array[0], 3);
       }
-      if(getDimension(array)===3){
-        map.flyTo(array[0][0],3)
+      if (getDimension(array) === 3) {
+        map.flyTo(array[0][0], 3);
       }
       return <GeoJSON data={locations} />;
     }
