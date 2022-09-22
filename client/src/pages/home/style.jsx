@@ -49,6 +49,6 @@ export const Error = styled.div`
   font-weight: 600;
 `;
 
-export const Success = styled.div`
+export const Label = styled.div`
   color: green;
 `;

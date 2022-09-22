@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { MapContainer, TileLayer, GeoJSON } from "react-leaflet";
+import { MapContainer, TileLayer, GeoJSON, useMap} from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import osm from "./osm-provider";
@@ -13,14 +13,9 @@ import {
   Form,
   Input,
   Error,
-  Success,
+  Label,
 } from "./style";
 
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl: require("leaflet/dist/images/marker-icon-2x.png"),
-  iconUrl: require("leaflet/dist/images/marker-icon.png"),
-  shadowUrl: require("leaflet/dist/images/marker-shadow.png"),
-});
 
 const Home = () => {
   const [center] = useState({ lat: 13.084622, lng: 80.248357 });
@@ -35,17 +30,18 @@ const Home = () => {
   const [miniLonLatError, setMiniLonLatError] = useState("");
   const [maxLonLatError, setMaxLonLatError] = useState("");
 
-  //success message
-  const [successMsg, setSuccessMsg] = useState("");
+  L.Icon.Default.mergeOptions({
+    iconRetinaUrl: require("leaflet/dist/images/marker-icon-2x.png"),
+    iconUrl: require("leaflet/dist/images/marker-icon.png"),
+    shadowUrl: require("leaflet/dist/images/marker-shadow.png"),
+  });
 
   const handleMiniLonLatChange = (e) => {
-    setSuccessMsg("");
     setMiniLonLatError("");
     setMiniLonLat(e.target.value);
   };
 
   const handleMaxLonLatChange = (e) => {
-    setSuccessMsg("");
     setMaxLonLatError("");
     setMaxLonLat(e.target.value);
   };
@@ -90,8 +86,26 @@ const Home = () => {
     }
   };
 
-  const MyData = () => {
+  const getDimension = ([array]) => {
+      return 1 + (Array.isArray(array) && getDimension(array));
+  } 
+  const GeoJsonComponent = () => {
+    const  map = useMap();
     if (JSON.stringify(locations).length > 2) {
+      let json = JSON.parse(JSON.stringify(locations.features));
+      let array = [];
+      json.forEach(element => {
+        array.push(element.geometry.coordinates)
+      });
+      if(getDimension(array)===1){
+        map.flyTo(array,3)
+      }
+      if(getDimension(array)===2){
+        map.flyTo(array[0],3)
+      }
+      if(getDimension(array)===3){
+        map.flyTo(array[0][0],3)
+      }
       return <GeoJSON data={locations} />;
     }
   };
@@ -105,23 +119,24 @@ const Home = () => {
           attribution={osm.maptiler.attribution}
           url={osm.maptiler.url}
         />
-        <MyData />
+        <GeoJsonComponent />
         <Container>
           <Wapper>
             <CenterBG>Enter the coordinates</CenterBG>
             <Form>
-              {successMsg && <Success>{successMsg}</Success>}
+              <Label>minLon,minLat</Label>
               <Input
                 type="text"
-                placeholder=""
+                placeholder="miniLon,miniLat"
                 onChange={handleMiniLonLatChange}
                 value={miniLonLat}
               />
               {miniLonLatError && <Error>{miniLonLatError}</Error>}
 
+              <Label>maxLon,maxLat</Label>
               <Input
                 type="text"
-                placeholder=""
+                placeholder="maxLon,maxLat"
                 onChange={handleMaxLonLatChange}
                 value={maxLonLat}
               />
