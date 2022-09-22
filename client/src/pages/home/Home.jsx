@@ -55,7 +55,7 @@ const Home = () => {
   const handleSearch = async (e) => {
     e.preventDefault(e);
     if (miniLonLat !== "") {
-      if (checkIfValidlatitudeAndlongitude(miniLonLat) != true) {
+      if (checkIfValidlatitudeAndlongitude(miniLonLat) !== true) {
         setMiniLonLatError("Invalid lon-lat combination");
       }
     } else {
@@ -63,7 +63,7 @@ const Home = () => {
     }
 
     if (maxLonLat !== "") {
-      if (checkIfValidlatitudeAndlongitude(maxLonLat) != true) {
+      if (checkIfValidlatitudeAndlongitude(maxLonLat) !== true) {
         setMaxLonLatError("Invalid lon-lat combination");
       }
     } else {
