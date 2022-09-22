@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^13.0.0",
+    "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.2.1",
     "axios": "^0.27.2",
     "leaflet": "^1.8.0",
@@ -13,6 +13,7 @@
     "react-leaflet": "^4.0.2",
     "react-leaflet-locate-control": "^0.1.6",
     "react-scripts": "5.0.1",
+    "react-test-renderer": "^18.2.0",
     "styled-components": "^5.3.5",
     "web-vitals": "^2.1.0"
   },
@@ -39,5 +40,13 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "jest-styled-components": "^7.1.1"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "react-leaflet": "<rootDir>/mocks/reactLeafletMock.js"
+    }
   }
 }
