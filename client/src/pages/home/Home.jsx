@@ -92,20 +92,22 @@ const Home = () => {
     const map = useMap();
     if (JSON.stringify(locations).length > 2) {
       let json = JSON.parse(JSON.stringify(locations.features));
-      let array = [];
-      json.forEach((element) => {
-        array.push(element.geometry.coordinates);
-      });
-      if (getDimension(array) === 1) {
-        map.flyTo(array, 3);
+      if (json.length !== 0) {
+        let array = [];
+        json.forEach((element) => {
+          array.push(element.geometry.coordinates);
+        });
+        if (getDimension(array) === 1) {
+          map.flyTo(array, 3);
+        }
+        if (getDimension(array) === 2) {
+          map.flyTo(array[0], 3);
+        }
+        if (getDimension(array) === 3) {
+          map.flyTo(array[0][0], 3);
+        }
+        return <GeoJSON data={locations} />;
       }
-      if (getDimension(array) === 2) {
-        map.flyTo(array[0], 3);
-      }
-      if (getDimension(array) === 3) {
-        map.flyTo(array[0][0], 3);
-      }
-      return <GeoJSON data={locations} />;
     }
   };
 
