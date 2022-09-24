@@ -17,7 +17,7 @@ import {
 } from "./style";
 
 const Home = () => {
-  const [center] = useState({ lat: 13.084622, lng: 80.248357 });
+  const center = [  13.084622,  80.248357 ];
   const ZOOM_LEVEL = 9;
   const [locations, setLocations] = useState([]);
 
